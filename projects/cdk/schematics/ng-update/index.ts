@@ -38,6 +38,7 @@ import {replaceServices} from './steps/replace-services';
 import {replaceStyles, TUI_WARNING_NORMALIZE} from './steps/replace-styles';
 import {showWarnings} from './steps/show-warnings';
 import {migrateExpandTemplates} from './v3-5/steps/migrate-expand-templates';
+import {migrateInputFiles} from './steps/migrate-input-files';
 
 export function updateToV3(options: TuiSchema): Rule {
     const t0 = performance.now();
@@ -99,6 +100,7 @@ function main(options: TuiSchema): Rule {
 
         migrateSliders(updatedFileSystem, options);
         migrateProgress(updatedFileSystem, options);
+        migrateInputFiles(updatedFileSystem);
         removeModules(options);
         dateTimeMigrations(options);
         replaceFunctions(options);
